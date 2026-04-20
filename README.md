@@ -1,0 +1,2 @@
+Este ejercicio nos pide insertar varios empleados en una transaccion y hacer un rollback si uno falla, Comenzaremos desactivando el autoCommit mediante conexion.setAutoCommit(false);
+Luego realizaremos la sentencia para isnertar datos, despues usaremos un bucle for que no parara hasta añadir la cantidad de empleados seleccionada por el usuario, si todo ha funcionado correctamente se realizara el commit y mostramos los datos con un metodo. Si falla el programa ira al catch donde se realizara un rollback
