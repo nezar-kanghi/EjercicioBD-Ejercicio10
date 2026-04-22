@@ -1,9 +1,9 @@
 import java.sql.*;
 import java.util.Scanner;
 
+//EJERCICIO 10
 public class Main {
     public static void main(String[] args) {
-//EJERCICIO 10
         Scanner sc = new Scanner(System.in);
         String url = "jdbc:oracle:thin:@localhost:1521:xe";
         String usuario = "RIBERA";
@@ -21,7 +21,8 @@ public class Main {
             int cantidad = sc.nextInt();
             sc.nextLine();
 
-            for (int i = 0; i < cantidad; i++) {
+            //bucle for que añade el numero de empleados que decida el usuario
+            for (int i = 0; i < cantidad; i++) { 
                 System.out.println("Empleado " + (i + 1));
 
                 System.out.print("ID: ");
@@ -43,17 +44,17 @@ public class Main {
             }
 
 
-            // 2. Si todo va bien → commit
+            // 2. Si todo va bien commit
             conexion.commit();
             System.out.println("Todos los empleados insertados correctamente");
 
-            mostrarDatos(url, usuario, password);
+            mostrarDatos(url, usuario, password); //llamamos al metodo para mostrar los datos
 
         } catch (SQLException e) {
             System.out.println("Error detectado, haciendo rollback: " + e.getMessage());
 
             try {
-                // 3. Si falla algo → rollback
+                // 3. Si falla algo rollback
                 Connection conexion = DriverManager.getConnection(url, usuario, password);
                 conexion.rollback();
             } catch (SQLException ex) {
@@ -62,6 +63,7 @@ public class Main {
         }
     }
 
+    //metodo para mostrar los datos
     public static void mostrarDatos(String url, String usuario, String password){
 
         try(Connection conexion = DriverManager.getConnection(url, usuario, password);
@@ -78,9 +80,7 @@ public class Main {
                 String nombre = rs.getString("nombre");
                 double salario = rs.getDouble("salario");
 
-                System.out.println("ID: " + id +
-                        ", Nombre: " + nombre +
-                        ", Salario: " + salario);
+                System.out.println("ID: " + id + ", Nombre: " + nombre + ", Salario: " + salario);
             }
 
         } catch (SQLException e){
